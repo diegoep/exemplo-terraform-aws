@@ -82,7 +82,7 @@ resource "aws_instance" "web" {
     user = "ubuntu"
     port = 22
     type = "ssh"
-    private_key = file("~/.ssh/id_rsa")
+    private_key = var.connection_private_key
   }
   
 }

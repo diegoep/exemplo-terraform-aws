@@ -19,3 +19,7 @@ variable "instance_tags" {
         Group = "Virtualização"
     }
 }
+
+variable "connection_private_key" {
+  description = "private key to copy files"
+}

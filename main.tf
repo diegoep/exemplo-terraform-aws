@@ -33,7 +33,7 @@ resource aws_vpc_security_group_ingress_rule "web_sg_ssh" {
   from_port         = 22
   to_port           = 22
   ip_protocol       = "tcp"
-  cidr_ipv4       = ["0.0.0.0/0"]
+  cidr_ipv4         = "0.0.0.0/0"
 }
 
 resource aws_vpc_security_group_ingress_rule "web_sg_http" {
@@ -41,7 +41,7 @@ resource aws_vpc_security_group_ingress_rule "web_sg_http" {
   from_port         = 80
   to_port           = 80
   ip_protocol       = "tcp"
-  cidr_ipv4       = ["0.0.0.0/0"]
+  cidr_ipv4         = "0.0.0.0/0"
 }
 
 resource "aws_instance" "web" {

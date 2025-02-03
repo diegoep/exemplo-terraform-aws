@@ -20,12 +20,6 @@ resource "aws_key_pair" "id_rsa" {
 resource "aws_security_group" "web_sg" {
   name = "web_sg"
   description = "Security group for web servers"
-  ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
   egress {
     from_port = 0
     to_port = 65535
@@ -34,13 +28,20 @@ resource "aws_security_group" "web_sg" {
   }
 }
 
-resource "aws_security_group_rule" "web_sg_http" {
-  type              = "ingress"
+resource aws_vpc_security_group_ingress_rule "web_sg_ssh" {
+  security_group_id = aws_security_group.web_sg.id
+  from_port         = 22
+  to_port           = 22
+  ip_protocol       = "tcp"
+  cidr_ipv4       = ["0.0.0.0/0"]
+}
+
+resource aws_vpc_security_group_ingress_rule "web_sg_http" {
+  security_group_id = aws_security_group.web_sg.id
   from_port         = 80
   to_port           = 80
-  protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.web_sg.id
+  ip_protocol       = "tcp"
+  cidr_ipv4       = ["0.0.0.0/0"]
 }
 
 resource "aws_instance" "web" {

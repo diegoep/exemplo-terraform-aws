@@ -23,3 +23,7 @@ variable "instance_tags" {
 variable "connection_private_key" {
   description = "private key to copy files"
 }
+
+variable "public_key" {
+  description = "value of the public key"
+}
